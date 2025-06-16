@@ -38,8 +38,6 @@ jobs:
         # Create a temporary file for the new content
         echo "# Up-To-Date Leech Mirror Groups" > temp_readme.md
         echo "" >> temp_readme.md
-        echo "## Latest Found Links" >> temp_readme.md
-        echo "" >> temp_readme.md
         echo "Last updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> temp_readme.md
         echo "" >> temp_readme.md
         

@@ -37,11 +37,12 @@ async def process_page(session, base_url, idx, unique_links, file):
     if html is None:
         return False
     for match in AUTHOR_LINK_REGEX.findall(html):
-        if match not in unique_links:
-            unique_links.add(match)
-            file.write(match + "\n")
-            file.flush()
-            print(f"Found and wrote: {match}")
+        if match and match.strip():  # Check if link is not empty
+            if match not in unique_links:
+                unique_links.add(match)
+                file.write(match + "\n")
+                file.flush()
+                print(f"Found and wrote: {match}")
     print(f"Checked: {url}")
     return True
 
