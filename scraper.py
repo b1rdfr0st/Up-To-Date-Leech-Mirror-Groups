@@ -14,7 +14,7 @@ from datetime import datetime
 AUTHOR_LINK_REGEX = re.compile(r'<a\s+rel="author"\s+href="([^"]+)"')
 CONCURRENT_REQUESTS = 10
 OUTPUT_FILE = "unique_leech_mirror_links.txt"
-MAX_PAGES = 200  # Limitless if 0
+MAX_PAGES = 0  # Limitless if 0
 
 def get_date_str():
     if len(sys.argv) > 1:

@@ -51,7 +51,7 @@ python scraper.py
 
 The script will:
 - Use today's date automatically
-- Check up to 200 pages by default (configurable via `MAX_PAGES` in the script)
+- Check up to all pages by default (configurable via `MAX_PAGES` in the script)
 - Save results to `unique_leech_mirror_links.txt`
 
 ## GitHub Actions
@@ -75,9 +75,11 @@ This repository is for educational and archival purposes only. Please respect th
 
 **Author:** [fr0stb1rd](https://fr0stb1rd.gitlab.io/) 
 
-**Repo:** [gitlab/fr0stb1rd/Up-To-Date Leech Mirror Groups](https://github.com/b1rdfr0st/Up-To-Date-Leech-Mirror-Groups)
+**Repo GitHub:** [github/fr0stb1rd/Up-To-Date Leech Mirror Groups](https://github.com/b1rdfr0st/Up-To-Date-Leech-Mirror-Groups)
 
-**Blog Post:**  [fr0stb1rd.gitlab.io](https://fr0stb1rd.gitlab.io/posts/mdimg_localizer-automatic-markdown-image-localizer/)
+**Repo GitLab:** [gitlab/fr0stb1rd/Up-To-Date Leech Mirror Groups](https://gitlab.com/fr0stb1rd/up-to-date-leech-mirror-groups)
+
+**Blog Post:**  [fr0stb1rd.gitlab.io](https://fr0stb1rd.gitlab.io/posts/up-to-date-leech-mirror-groups-automatic-telegram-group-link-collector/)
 
 **License:** GPL-3.0
 
