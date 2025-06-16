@@ -1,0 +1,65 @@
+name: Update README with Links
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs at 00:00 UTC every day
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Clear previous links file
+      run: |
+        echo "" > unique_leech_mirror_links.txt
+    
+    - name: Run scraper
+      run: python scraper.py
+    
+    - name: Update README with new links
+      run: |
+        # Create a temporary file for the new content
+        echo "# Up-To-Date Leech Mirror Groups" > temp_readme.md
+        echo "" >> temp_readme.md
+        echo "## Latest Found Links" >> temp_readme.md
+        echo "" >> temp_readme.md
+        echo "Last updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> temp_readme.md
+        echo "" >> temp_readme.md
+        
+        # Add new links as bullet points
+        if [ -f unique_leech_mirror_links.txt ]; then
+          while IFS= read -r line; do
+            echo "- $line" >> temp_readme.md
+          done < unique_leech_mirror_links.txt
+        fi
+        
+        echo "" >> temp_readme.md
+        echo "---" >> temp_readme.md
+        echo "" >> temp_readme.md
+        
+        # Append the rest of the original README
+        tail -n +2 README.md >> temp_readme.md
+        
+        # Replace the original README with the new content
+        mv temp_readme.md README.md
+    
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md unique_leech_mirror_links.txt
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update README and links file with latest data" && git push)
+    
