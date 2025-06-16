@@ -44,7 +44,9 @@ jobs:
         # Add new links as bullet points
         if [ -f unique_leech_mirror_links.txt ]; then
           while IFS= read -r line; do
-            echo "- $line" >> temp_readme.md
+            if [ ! -z "$line" ]; then  # Only add non-empty lines
+              echo "- $line" >> temp_readme.md
+            fi
           done < unique_leech_mirror_links.txt
         fi
         
@@ -52,8 +54,13 @@ jobs:
         echo "---" >> temp_readme.md
         echo "" >> temp_readme.md
         
-        # Append the rest of the original README
-        tail -n +2 README.md >> temp_readme.md
+        # Find the line number of the first "---" in the original README
+        first_divider=$(grep -n "^---$" README.md | head -n 1 | cut -d: -f1)
+        
+        # Append everything after the first divider from the original README
+        if [ ! -z "$first_divider" ]; then
+          tail -n +$((first_divider + 1)) README.md >> temp_readme.md
+        fi
         
         # Replace the original README with the new content
         mv temp_readme.md README.md

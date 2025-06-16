@@ -37,12 +37,12 @@ async def process_page(session, base_url, idx, unique_links, file):
     if html is None:
         return False
     for match in AUTHOR_LINK_REGEX.findall(html):
-        if match and match.strip():  # Check if link is not empty
-            if match not in unique_links:
-                unique_links.add(match)
-                file.write(match + "\n")
-                file.flush()
-                print(f"Found and wrote: {match}")
+        link = match.strip()
+        if link and link not in unique_links:  # Only add non-empty, unique links
+            unique_links.add(link)
+            file.write(link + "\n")
+            file.flush()
+            print(f"Found and wrote: {link}")
     print(f"Checked: {url}")
     return True
 
@@ -69,7 +69,7 @@ async def async_main(file):
             idx += CONCURRENT_REQUESTS
 
 def main():
-    with open(OUTPUT_FILE, "a", encoding="utf-8") as file:
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as file:  # Changed from "a" to "w" to start fresh
         asyncio.run(async_main(file))
 
 if __name__ == "__main__":
