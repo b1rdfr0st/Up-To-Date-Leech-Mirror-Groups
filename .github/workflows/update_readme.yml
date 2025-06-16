@@ -52,7 +52,6 @@ jobs:
         
         echo "" >> temp_readme.md
         echo "---" >> temp_readme.md
-        echo "" >> temp_readme.md
         
         # Find the line number of the first "---" in the original README
         first_divider=$(grep -n "^---$" README.md | head -n 1 | cut -d: -f1)
