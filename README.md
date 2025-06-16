@@ -15,8 +15,6 @@ Last updated: 2025-06-16 22:35:55 UTC
 
 ---
 
-
-
 This repository automatically collects and updates a list of unique leech mirror group links from [graph.org](https://graph.org) every day at midnight (00:00 UTC). The script fetches all available pages for the current date, extracts unique author links, and updates the [`unique_leech_mirror_links.txt`](unique_leech_mirror_links.txt) file in real time. The process is fully automated using GitHub Actions.
 
 ## Features
