@@ -14,6 +14,7 @@ from datetime import datetime
 AUTHOR_LINK_REGEX = re.compile(r'<a\s+rel="author"\s+href="([^"]+)"')
 CONCURRENT_REQUESTS = 10
 OUTPUT_FILE = "unique_leech_mirror_links.txt"
+MAX_PAGES = 50  # Limitless if 0
 
 def get_date_str():
     if len(sys.argv) > 1:
@@ -52,9 +53,14 @@ async def async_main(file):
     stop = False
     async with aiohttp.ClientSession() as session:
         while not stop:
+            if MAX_PAGES > 0 and idx > MAX_PAGES:
+                print(f"Reached maximum page limit ({MAX_PAGES})")
+                break
+                
             tasks = [
                 process_page(session, base_url, i, unique_links, file)
                 for i in range(idx, idx + CONCURRENT_REQUESTS)
+                if MAX_PAGES == 0 or i <= MAX_PAGES
             ]
             results = await asyncio.gather(*tasks)
             if not all(results):
