@@ -15,7 +15,6 @@ Last updated: 2025-06-16 22:26:14 UTC
 
 ---
 
-
 This repository automatically collects and updates a list of unique leech mirror group links from [graph.org](https://graph.org) every day at midnight (00:00 UTC). The script fetches all available pages for the current date, extracts unique author links, and updates the [`unique_leech_mirror_links.txt`](unique_leech_mirror_links.txt) file in real time. The process is fully automated using GitHub Actions.
 
 ## Features
@@ -43,12 +42,17 @@ This repository automatically collects and updates a list of unique leech mirror
 You can run the script manually if you wish:
 
 ```bash
+# Install required package
 pip install aiohttp
-python link_looker.py [MM-DD]
+
+# Run the script
+python scraper.py
 ```
 
-- If `[MM-DD]` is omitted, today's date is used.
-- Results are saved to `unique_leech_mirror_links.txt`.
+The script will:
+- Use today's date automatically
+- Check up to 200 pages by default (configurable via `MAX_PAGES` in the script)
+- Save results to `unique_leech_mirror_links.txt`
 
 ## GitHub Actions
 
@@ -64,16 +68,14 @@ Feel free to open an issue or submit a pull request.
 
 This project is licensed under the [GNU General Public License v3.0](LICENSE).
 
----
-
-**Disclaimer:**  
+## Disclaimer
 This repository is for educational and archival purposes only. Please respect the terms of service of any third-party sites
 
 ## About
 
 **Author:** [fr0stb1rd](https://fr0stb1rd.gitlab.io/) 
 
-**Repo:** [gitlab/fr0stb1rd/mdimg-localizer](https://gitlab.com/fr0stb1rd/mdimg-localizer)
+**Repo:** [gitlab/fr0stb1rd/Up-To-Date Leech Mirror Groups](https://github.com/b1rdfr0st/Up-To-Date-Leech-Mirror-Groups)
 
 **Blog Post:**  [fr0stb1rd.gitlab.io](https://fr0stb1rd.gitlab.io/posts/mdimg_localizer-automatic-markdown-image-localizer/)
 

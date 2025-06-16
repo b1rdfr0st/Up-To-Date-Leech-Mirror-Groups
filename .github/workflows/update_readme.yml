@@ -70,5 +70,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add README.md unique_leech_mirror_links.txt
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update README and links file with latest data" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Daily Update: $(date -u '+%Y-%m-%d') - Refreshed mirror group links" && git push)
     
