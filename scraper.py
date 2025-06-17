@@ -20,7 +20,8 @@ def get_date_str():
     if len(sys.argv) > 1:
         return sys.argv[1]
     else:
-        return datetime.now().strftime("%m-%d")
+        yesterday = datetime.now() - datetime.timedelta(days=1)
+        return yesterday.strftime("%m-%d")
 
 async def fetch(session, url):
     async with session.get(url) as resp:
