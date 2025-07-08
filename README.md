@@ -1,23 +1,18 @@
 # Up-To-Date Leech Mirror Groups
 
-Last updated: 2025-07-07 01:56:57 UTC
+Last updated: 2025-07-08 01:50:31 UTC
 
-- https://t.me/MrUnknown114
 - https://t.me/Opleech
-- https://t.me/powerleech
+- https://t.me/MrUnknown114
 - https://t.me/thoursbridi
 - https://t.me/Luna073x
-- https://t.me/KCxTG
-- https://t.me/PrimeXLeech
+- https://t.me/asifalex
+- https://t.me/CloudxLeech
 - https://t.me/WZML_X
-- https://t.me/botdownloadall
+- https://t.me/ScienceEduAdmin
+- https://t.me/powerleech
 - https://t.me/atomicXgroup
 - https://t.me/CyberPunkGrp
-- https://t.me/ScienceEduAdmin
-- https://t.me/ACE_ML
-- https://t.me/Siva_Soft
-- https://t.me/CloudxLeech
-- https://t.me/alone_rio
 
 ---
 
