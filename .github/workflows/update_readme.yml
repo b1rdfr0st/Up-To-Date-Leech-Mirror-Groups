@@ -32,6 +32,9 @@ jobs:
     
     - name: Run scraper
       run: python scraper.py
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     
     - name: Update README with new links
       run: |

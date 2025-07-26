@@ -8,6 +8,7 @@ import asyncio
 import aiohttp
 import re
 import sys
+import os
 from datetime import datetime,timedelta
 
 AUTHOR_LINK_REGEX = re.compile(r'<a\s+rel="author"\s+href="([^"]+)"')
@@ -67,10 +68,69 @@ async def async_main(file):
             if not all(results):
                 stop = True
             idx += CONCURRENT_REQUESTS
+    
+    return unique_links
+
+async def send_telegram_notification(links):
+    """Send scraped links to Telegram channel with double line breaks between each link"""
+    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID') 
+    
+    if not bot_token or not chat_id:
+        print("⚠️  Telegram credentials not found in environment variables")
+        return
+    
+    if not links:
+        print("ℹ️  No links to send to Telegram")
+        return
+
+    # Create message with double line breaks between links
+    message = f"🔄 <b>Up-To-Date Leech Mirror Groups | {(datetime.now() - timedelta(days=1)).strftime("%d-%m-%Y")}</b>\n"
+    
+    # Start quoted block for all links
+    message += "<blockquote>"
+    for link in links:
+        message += f"🔗 {link}\n"  # Links with line breaks
+    message = message.rstrip()
+    message += "</blockquote>\n"
+    
+    # Add footer with embedded links
+    message += "✨ <b>fr0stb1rd / Up-To-Date-Leech-Mirror-Groups</b>\n"
+    message += "📱 <a href='https://t.me/Up_To_Date_Leech_Mirror_Groups'>Channel</a> | "
+    message += "🐙 <a href='https://github.com/b1rdfr0st/Up-To-Date-Leech-Mirror-Groups'>See in Web</a> | "
+    message += "💻 <a href='https://gitlab.com/fr0stb1rd/up-to-date-leech-mirror-groups'>Source Code</a>"
+    
+
+    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+    data = {
+        'chat_id': chat_id,
+        'text': message,
+        'parse_mode': 'HTML',
+        'disable_web_page_preview': True
+    }
+    
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, json=data) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    if result.get('ok'):
+                        print('✅ Message sent successfully to Telegram')
+                    else:
+                        print(f'❌ Telegram API error: {result}')
+                else:
+                    print(f'❌ HTTP error: {response.status}')
+                    error_text = await response.text()
+                    print(f'Error details: {error_text}')
+    except Exception as e:
+        print(f'❌ Error sending message to Telegram: {e}')
 
 def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as file:  # Changed from "a" to "w" to start fresh
-        asyncio.run(async_main(file))
+        unique_links = asyncio.run(async_main(file))
+        
+        # Send notification to Telegram if credentials are available
+        asyncio.run(send_telegram_notification(unique_links))
 
 if __name__ == "__main__":
     main()

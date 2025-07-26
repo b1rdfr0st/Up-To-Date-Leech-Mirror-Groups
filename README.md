@@ -135,6 +135,7 @@ This repository automatically collects and updates a list of unique leech mirror
 - **Fast & Efficient:** Uses asynchronous requests for rapid data collection.
 - **Real-Time Writing:** New unique links are appended to the output file as soon as they are found.
 - **Persistent Storage:** All unique links are stored in [`unique_leech_mirror_links.txt`](unique_leech_mirror_links.txt) and updated with each run.
+- **Telegram Notifications:** Automatically sends daily updates to Telegram channel with formatted links and project information.
 - **Open Source:** Licensed under GPLv3.
 
 ## How It Works
@@ -146,8 +147,9 @@ This repository automatically collects and updates a list of unique leech mirror
    where `MM-DD` is the current month and day.
 2. It stops when a page returns a 404 error.
 3. All unique `<a rel="author" href="...">` links are extracted and saved to [`unique_leech_mirror_links.txt`](unique_leech_mirror_links.txt).
-4. The script is scheduled to run daily via GitHub Actions, ensuring the list is always up to date.
-5. Both the README and `unique_leech_mirror_links.txt` are automatically committed and pushed to the repository after each update.
+4. **Telegram Notification:** The script sends a formatted message to the configured Telegram channel with all collected links, project information, and relevant links.
+5. The script is scheduled to run daily via GitHub Actions, ensuring the list is always up to date.
+6. Both the README and `unique_leech_mirror_links.txt` are automatically committed and pushed to the repository after each update.
 
 ## Usage
 
@@ -168,7 +170,20 @@ The script will:
 
 ## GitHub Actions
 
-The repository includes a workflow that runs the script every day at 00:00 UTC and commits any changes to the repository.  
+The repository includes a workflow that runs the script every day at 00:00 UTC and commits any changes to the repository. The workflow also sends Telegram notifications with the collected links.
+
+### Telegram Setup
+
+To enable Telegram notifications, you need to set up the following GitHub Secrets:
+
+1. **TELEGRAM_BOT_TOKEN**: Your Telegram bot token (get it from [@BotFather](https://t.me/botfather))
+2. **TELEGRAM_CHAT_ID**: Your Telegram channel/chat ID where notifications will be sent
+
+The script will automatically send formatted messages with:
+- Daily update timestamp
+- All collected leech mirror group links (in quoted format)
+- Project information and relevant links
+
 No manual intervention is required.
 
 ## Contributing
@@ -186,6 +201,8 @@ This repository is for educational and archival purposes only. Please respect th
 ## About
 
 **Author:** [fr0stb1rd](https://fr0stb1rd.gitlab.io/) 
+
+**Telegram Channel:** [@Up_To_Date_Leech_Mirror_Groups](https://t.me/Up_To_Date_Leech_Mirror_Groups)
 
 **Repo GitHub:** [github/fr0stb1rd/Up-To-Date Leech Mirror Groups](https://github.com/b1rdfr0st/Up-To-Date-Leech-Mirror-Groups)
 
