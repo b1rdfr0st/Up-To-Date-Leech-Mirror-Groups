@@ -1,14 +1,11 @@
 # Up-To-Date Leech Mirror Groups
 
-Last updated: 2026-05-08 03:22:47 UTC
+Last updated: 2026-05-09 03:20:52 UTC
 
-- https://t.me/KINGS_MIRROR
 - https://t.me/WZML_X
-- https://t.me/ngi_sync
+- https://telegram.me/JetMirror
+- https://t.me/BanglaDubZone
 - https://t.me/QueenMirrorOfficial
-- https://t.me/Srilinks4k_In
-- https://t.me/KristyXLeech
-- https://t.me/SourcePleaseML
 
 ---
 
