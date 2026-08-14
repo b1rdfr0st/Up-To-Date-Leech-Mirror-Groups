@@ -1,3 +1,5 @@
+
+
 # Up-To-Date Leech Mirror Groups
 
 Last updated: 2026-08-14 02:13:19 UTC
@@ -164,7 +166,7 @@ This repository automatically collects and updates a list of unique leech mirror
    `https://graph.org/MediaInfo-X-MM-DD`,  
    `https://graph.org/MediaInfo-X-MM-DD-2`,  
    `https://graph.org/MediaInfo-X-MM-DD-3`, ...  
-   where `MM-DD` is the current month and day.
+   where `MM-DD` is the previous day's month and date.
 2. It stops when a page returns a 404 error.
 3. All unique `<a rel="author" href="...">` links are extracted and saved to [`unique_leech_mirror_links.txt`](unique_leech_mirror_links.txt).
 4. **Telegram Notification:** The script sends a formatted message to the configured Telegram channel with all collected links, project information, and relevant links.
